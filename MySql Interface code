@@ -1,0 +1,27 @@
+import mysql.connector
+mydb=mysql.connector.connect(host='localhost',user='root',passwd='Carti2918$',database="data")
+mycur=mydb.cursor()
+
+mycur.execute('''create table SCHOOLBUS (Rtno integer,Area_Covered varchar(20),
+Capacity integer, NoOfStudents integer,Distance integer,Transporter varchar(50), Charge integer);''')
+
+mycur.execute('''insert into SCHOOLBUS values
+(1,'A_001',100,120,10,'Shivam Travels',100000),
+(2,'A_007',80,80,10,'Anand Travels',85000),
+(3,'A_003',60,55,30,'Anand Travels',60000),
+(4,'A_008',100,90,35,'Anand Travels',100000),
+(5,'A_010',50,60,20,'Bhalla Co',55000),
+(6,'A_004',70,80,30,'Yadhav Co',80000),
+(7,'A_009',100,110,25,'Yadhav Co',100000),
+(8,'A_005',40,40,20,'Speed Travels',55000),
+(9,'A_002',120,120,10,'Speed Travels',100000),
+(10,'A_006',100,100,20,'Kishen Tour',95000);''')   #23
+
+
+mycur.execute('select * from SCHOOLBUS where distance>20;') #24
+
+mycur.execute('''delete from SCHOOLBUS where transporter = 'Yadhav Co';''') #26
+
+mycur.execute('''update SCHOOLBUS
+set charges=charges+100 where charges>100;''') #25
+
