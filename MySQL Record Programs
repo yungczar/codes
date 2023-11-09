@@ -1,0 +1,90 @@
+create database STD12; 							#22
+use STD12;
+
+create table BRAND        
+(B_ID integer,
+Brandname varchar(30),
+City varchar (15),
+P_ID varchar (5));
+
+create table PRODUCT
+(P_ID varchar(5),
+Productname varchar(15),
+Manufacturer varchar(5),
+Price integer);
+
+insert into BRAND values
+(01,'Maybelline','Delhi','FW05'),
+(06,'Loreal','Mumbai','BS01'),
+(12,'MAC','Delhi','SH06'),
+(15,'Sugar','Delhi','FW12'),
+(16,'Kay','Bangalore','TPO1');
+
+insert into PRODUCT values
+('TPO1','Toner','LAK',40),
+('FW05','Face wash','ABC',45),
+('BS01','Bronzer','ABC',55),
+('SH06','Shampoo','XYZ',120),
+('FW12','Face wash','XYZ',95);
+
+select * from BRAND;
+select * from PRODUCT;  						 #22
+
+
+
+select B_ID,Brandname from BRAND;		 		 #23                         
+select P_ID,Productname from PRODUCT;
+
+select * from PRODUCT where
+Price>=50 and Price<=100;
+
+select Brandname,City,P_ID from BRAND;
+select Productname,Price,P_ID from PRODUCT;
+
+update PRODUCT
+set Price=Price+10 where Price>10;
+ 				
+select * from PRODUCT;							#23
+
+select sum(price) from PRODUCT				 	#24
+where price>0;
+
+select max(price) from PRODUCT
+where Productname = 'Face wash';
+
+alter table PRODUCT
+add quantity integer;
+select * from product;
+
+select Brandname from BRAND
+where Brandname like 'MA%'; 					#24
+
+select * from PRODUCT 							#25
+join brand on product.p_id=brand.p_id
+order by brand.brandname;		 
+
+select COUNT(distinct manufacturer) as manufacturer_count
+from product;
+
+select p.productname,b.brandname
+from product p
+inner join brand b on p.p_id=b.p_id
+where p.price>50;
+
+delete from PRODUCT where price<45;
+
+select * from PRODUCT;                    		#25
+
+select * from BRAND								#26
+where City like '%i';
+
+select ProductName, Price * 0.9 as DiscountedPrice
+from PRODUCT where Price > 50;
+
+update PRODUCT
+set ProductName = 'contour'
+where Manufacturer = 'xyz';
+
+select * from PRODUCT;
+
+drop table PRODUCT;  							 #26
